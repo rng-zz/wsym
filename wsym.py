@@ -108,7 +108,7 @@ def add_symbols(elff, symbols):
         sym = sym_t()
         sym.st_name = len(symstrtab)
         symstrtab += bytes(name, "utf8") + b"\x00"
-        sym.st_value = addr
+        sym.st_value = addr - shdr.sh_addr
         sym.st_size = size
         sym.st_info = (1 << 4) | 2 # GLOBAL FUNC
         sym.st_other = 0
